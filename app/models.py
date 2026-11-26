@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from decimal import Decimal
 
 from sqlalchemy import Boolean, Date, DateTime, ForeignKey, Integer, Numeric, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -31,8 +32,8 @@ class StockBatch(Base):
     medicine_id: Mapped[int] = mapped_column(ForeignKey("medicines.id"), index=True)
     batch_number: Mapped[str] = mapped_column(String(80), index=True)
     expiry_date: Mapped[date] = mapped_column(Date)
-    purchase_price: Mapped[float] = mapped_column(Numeric(12, 2))
-    sale_price: Mapped[float] = mapped_column(Numeric(12, 2))
+    purchase_price: Mapped[Decimal] = mapped_column(Numeric(12, 2))
+    sale_price: Mapped[Decimal] = mapped_column(Numeric(12, 2))
     quantity: Mapped[int] = mapped_column(Integer, default=0)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
